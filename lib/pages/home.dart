@@ -1,3 +1,4 @@
+import 'package:captain_earth_extension/services/cards.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  List<HomeText> homeCardList = [
+    HomeText('Take a Test', '/test'),
+    HomeText('Meet a Kotha bondhu', '/doctorList'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,56 +34,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         //mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Card(
-            margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
-            child: InkWell(
-              onTap: (){
-                Navigator.pushNamed(context, '/test');
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
-                      'Take a Test',
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: Colors.grey[600],
-                      ),
-                    ),
-                    SizedBox(height: 6.0,),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          Card(
-            margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
-            child: InkWell(
-              onTap: (){
-                Navigator.pushNamed(context, '/doctorList');
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
-                      'Meet a Kotha bondhu',
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        color: Colors.grey[600],
-                      ),
-                    ),
-                    SizedBox(height: 6.0,),
-                  ],
-                ),
-              ),
-            ),
-          )
-        ],
+        children: homeCardList.map((homeText) => HomeCard(homeText)).toList(),
       ),
     );
   }

@@ -15,7 +15,7 @@ class _DoctorListState extends State<DoctorList> {
       appBar: AppBar(
         backgroundColor: Colors.green[900],
         title: Text(
-          'What problems are you facing?',
+          'Our Specialists',
           style: TextStyle(
             fontSize: 20.0,
             color: Colors.white,
