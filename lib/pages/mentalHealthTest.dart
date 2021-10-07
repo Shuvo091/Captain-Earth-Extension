@@ -1,4 +1,5 @@
 import 'package:captain_earth_extension/services/cards.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
@@ -13,7 +14,6 @@ class _MentalTestState extends State<MentalTest> {
 
   List<HomeText> quizNavCardList = [
     HomeText('See Your Result', '/result'),
-    HomeText('Consult a doctor', '/doctorList'),
   ];
 
   //TODO: Edit and add questions here
@@ -89,6 +89,7 @@ class _MentalTestState extends State<MentalTest> {
             Column(
               children: quizNavCardList.map((homeText) => QuizNavCard(homeText)).toList(),
             ),
+            SizedBox(height: 30.0,),
           ],
         ),
       ),

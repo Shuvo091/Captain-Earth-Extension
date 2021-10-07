@@ -3,19 +3,18 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
-class ProblemList extends StatefulWidget {
+class StartTestPage extends StatefulWidget {
+  const StartTestPage({Key? key}) : super(key: key);
+
   @override
-  _ProblemListState createState() => _ProblemListState();
+  _StartTestPageState createState() => _StartTestPageState();
 }
 
-class _ProblemListState extends State<ProblemList> {
+class _StartTestPageState extends State<StartTestPage> {
 
   ///HomeText class contains the text on the card and the route
-  List<HomeText> problemList = [
-    HomeText('Mental Depression', '/doctorList'),
-    HomeText('Anxiety', '/doctorList'),
-    HomeText('Insomnia', '/doctorList'),
-    HomeText('Disorder', '/doctorList'),
+  List<HomeText> homeCardList = [
+    HomeText('Start The Test', '/test'),
   ];
 
   @override
@@ -25,7 +24,7 @@ class _ProblemListState extends State<ProblemList> {
       appBar: AppBar(
         backgroundColor: Colors.green[900],
         title: Text(
-          'What Problems are you facing?',
+          'WHo 5 - Well Being Test',
           style: TextStyle(
             fontSize: 20.0,
             color: Colors.white,
@@ -34,8 +33,9 @@ class _ProblemListState extends State<ProblemList> {
         ),
       ),
       body: Column(
-        //mainAxisAlignment: MainAxisAlignment.center,
-        children: problemList.map((homeText) => ProblemCard(homeText)).toList(),
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: homeCardList.map((homeText) => HomeCard(homeText)).toList(),
       ),
     );
   }

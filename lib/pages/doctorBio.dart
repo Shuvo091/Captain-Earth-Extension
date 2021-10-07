@@ -5,7 +5,8 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class DoctorBio extends StatefulWidget {
 
-  Map data;
+  final Map data;
+  ///data['url'] <- url of the video and data['name'] <- name of the doctor
   DoctorBio(this.data);
 
   @override
@@ -47,6 +48,7 @@ class _DoctorBioState extends State<DoctorBio> {
 
   @override
   Widget build(BuildContext context) {
+    //TODO: design the doctor bio-data page here
     return Scaffold(
       backgroundColor: Colors.green[150],
       appBar: AppBar(
@@ -108,7 +110,17 @@ class _DoctorBioState extends State<DoctorBio> {
                   );
                 },
               ),
-            )
+            ),
+            SizedBox(height: 20.0,),
+            ElevatedButton(
+              onPressed: (){},
+              child: Text('Book a 20 minute free session'),
+            ),
+            SizedBox(height: 10.0,),
+            ElevatedButton(
+              onPressed: (){},
+              child: Text('Get free quote'),
+            ),
           ],
         ),
       ),

@@ -1,40 +1,48 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-//Clickable cards
+
+
+///--------------------------------------------------------------------------------------------------------------
+//Clickable cards for home page,problemlist page, starttest page,
+// scoreAndVideo page, mentalHealthtest page
 class HomeText{
   String options;
   String url;
   HomeText(this.options, this.url);
 }
 
-//for home page
-class HomeCard extends StatelessWidget {
-
+class ScorePageCard extends StatefulWidget {
   final HomeText homeText;
-  HomeCard(this.homeText);
+  ScorePageCard(this.homeText);
 
+  @override
+  _ScorePageCardState createState() => _ScorePageCardState();
+}
 
+class _ScorePageCardState extends State<ScorePageCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
       child: InkWell(
         onTap: (){
-          Navigator.pushNamed(context, homeText.url);
-          //print(QuizText.score);
-          //QuizText.score = 0;
+          ///Navigate from Home page to other page
+          Navigator.pushNamed(context, widget.homeText.url);
         },
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                homeText.options,
-                style: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.grey[600],
+              Center(
+                child: Text(
+                  widget.homeText.options,
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: Colors.grey[600],
+                  ),
                 ),
               ),
               SizedBox(height: 6.0,),
@@ -47,6 +55,47 @@ class HomeCard extends StatelessWidget {
 }
 
 
+
+class HomeCard extends StatelessWidget {
+
+  final HomeText homeText;
+  HomeCard(this.homeText);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+      child: InkWell(
+        onTap: (){
+          ///Navigate from Home page to other page
+          Navigator.pushNamed(context, homeText.url);
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Text(
+                  homeText.options,
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: Colors.grey[600],
+                  ),
+                ),
+              ),
+              SizedBox(height: 6.0,),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+///----------------------------------------------------------------------------------------------------------
 //for quiz page
 class QuizNavCard extends StatelessWidget {
 
@@ -87,6 +136,8 @@ class QuizNavCard extends StatelessWidget {
 
 
 
+
+
 class QuesAndWeight{
   String ques;
   int weight;
@@ -94,6 +145,7 @@ class QuesAndWeight{
 }
 
 class QuizText{
+  ///This is the score of the test
   static int score = 5;
   String question;
   QuesAndWeight opt1;
@@ -116,6 +168,7 @@ class QuizCard extends StatefulWidget {
 }
 
 class _QuizCardState extends State<QuizCard> {
+  //TODO: logic for scoring
   dynamic _currentState;
   int _weight = 0;
   int _prevWeight = 0;
@@ -254,7 +307,7 @@ class _QuizCardState extends State<QuizCard> {
 }
 
 
-
+///----------------------------------------------------------------------------------------------------------------------
 ///Doctor list page
 class DoctorDetails {
   String name;
@@ -262,7 +315,8 @@ class DoctorDetails {
   String expertize;
   String email;
   String url;
-  DoctorDetails(this.name,this.expertize, this.studiedCollege,this.email,this.url);
+  String type;
+  DoctorDetails(this.name,this.expertize, this.studiedCollege,this.email,this.url,this.type);
 }
 
 class DoctorCard extends StatelessWidget {
@@ -282,6 +336,7 @@ class DoctorCard extends StatelessWidget {
           });
 
         },
+        //TODO: Design the doctor list cards here
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
@@ -296,7 +351,7 @@ class DoctorCard extends StatelessWidget {
               ),
               SizedBox(height: 6.0,),
               Text(
-                'Specialist in ${doctorDetails.expertize}',
+                '${doctorDetails.expertize},',
                 style: TextStyle(
                   fontSize: 18.0,
                   color: Colors.grey[600],
@@ -311,6 +366,48 @@ class DoctorCard extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20.0,),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+///ProblemCard--------------------------------------------------------------------------------------------------
+class ProblemCard extends StatelessWidget {
+  final HomeText doctorDetails;
+  ProblemCard(this.doctorDetails);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+      child: InkWell(
+        onTap: (){
+          Navigator.of(context).pushNamed('/doctorList', arguments: {
+            'type': doctorDetails.options,
+          });
+        },
+        //TODO: Design the doctor list cards here
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Text(
+                  doctorDetails.options,
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: Colors.grey[600],
+                  ),
+                ),
+              ),
+              SizedBox(height: 6.0,),
             ],
           ),
         ),

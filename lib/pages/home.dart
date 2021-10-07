@@ -12,9 +12,10 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
+  ///HomeText class contains the text on the card and the route
   List<HomeText> homeCardList = [
-    HomeText('Take a Test', '/test'),
-    HomeText('Meet a Kotha bondhu', '/doctorList'),
+    HomeText('How am I doing?', '/starttest'),
+    HomeText('Meet my Kotha bondhu', '/problemlist'),
   ];
 
   @override
