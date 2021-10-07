@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
+//Clickable cards
 class HomeText{
   String options;
   String url;
   HomeText(this.options, this.url);
 }
 
-
+//for home page
 class HomeCard extends StatelessWidget {
 
   final HomeText homeText;
@@ -22,6 +22,45 @@ class HomeCard extends StatelessWidget {
       child: InkWell(
         onTap: (){
           Navigator.pushNamed(context, homeText.url);
+          //print(QuizText.score);
+          //QuizText.score = 0;
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                homeText.options,
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.grey[600],
+                ),
+              ),
+              SizedBox(height: 6.0,),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+
+//for quiz page
+class QuizNavCard extends StatelessWidget {
+
+  final HomeText homeText;
+  QuizNavCard(this.homeText);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+      child: InkWell(
+        onTap: (){
+          Navigator.pushNamed(context, homeText.url, arguments: {'score':QuizText.score});
           print(QuizText.score);
           //QuizText.score = 0;
         },
@@ -83,11 +122,9 @@ class _QuizCardState extends State<QuizCard> {
 
   @override
   void initState() {
-    // TODO: implement initState
     _currentState = widget.quiz.opt1.ques;
     _weight = widget.quiz.opt1.weight;
     _prevWeight = _weight;
-    //QuizText.score = 0;
 
     super.initState();
   }
@@ -140,7 +177,7 @@ class _QuizCardState extends State<QuizCard> {
                     _currentState = value;
                     _prevWeight = _weight;
                     _weight = widget.quiz.opt2.weight;
-                    QuizText.score += _weight-_prevWeight;
+                    QuizText.score += _weight - _prevWeight;
                   });
                 },
               ),
@@ -216,3 +253,68 @@ class _QuizCardState extends State<QuizCard> {
   }
 }
 
+
+
+///Doctor list page
+class DoctorDetails {
+  String name;
+  String studiedCollege;
+  String expertize;
+  String email;
+  String url;
+  DoctorDetails(this.name,this.expertize, this.studiedCollege,this.email,this.url);
+}
+
+class DoctorCard extends StatelessWidget {
+  final DoctorDetails doctorDetails;
+  DoctorCard(this.doctorDetails);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      margin: EdgeInsets.fromLTRB(16, 16, 16, 0),
+      child: InkWell(
+        onTap: (){
+          Navigator.of(context).pushNamed('/doctorBio', arguments: {
+            'url': doctorDetails.url,
+            'name': doctorDetails.name,
+          });
+
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                '${doctorDetails.name}',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.grey[600],
+                ),
+              ),
+              SizedBox(height: 6.0,),
+              Text(
+                'Specialist in ${doctorDetails.expertize}',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.grey[600],
+                ),
+              ),
+              SizedBox(height: 6.0,),
+              Text(
+                '${doctorDetails.studiedCollege}',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.grey[600],
+                ),
+              ),
+              SizedBox(height: 20.0,),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

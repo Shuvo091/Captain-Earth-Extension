@@ -11,11 +11,12 @@ class MentalTest extends StatefulWidget {
 
 class _MentalTestState extends State<MentalTest> {
 
-  List<HomeText> homeCardList = [
+  List<HomeText> quizNavCardList = [
     HomeText('See Your Result', '/result'),
     HomeText('Consult a doctor', '/doctorList'),
   ];
-  
+
+  //TODO: Edit and add questions here
   List<QuizText> quizQuesList = [
     QuizText(
         'Ques 1',
@@ -80,14 +81,13 @@ class _MentalTestState extends State<MentalTest> {
         child: Column(
           children: <Widget>[
             Column(
-              //mainAxisAlignment: MainAxisAlignment.center,
               children: quizQuesList.map((quizText) => QuizCard(quizText)).toList(),
             ),
             SizedBox(
               height: 30.0,
             ),
             Column(
-              children: homeCardList.map((homeText) => HomeCard(homeText)).toList(),
+              children: quizNavCardList.map((homeText) => QuizNavCard(homeText)).toList(),
             ),
           ],
         ),
